@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-import { COLORS, FONTS, SIZES, PROPS } from "../../styles/styles";
-import { Input } from "../common/Input-component";
+import { COLORS, FONTS, SIZES, PROPS } from "../common/styles";
+
+import { Input } from "../common/components/Input";
 const theme = "light";
 
 const HeaderStyled = styled.div`

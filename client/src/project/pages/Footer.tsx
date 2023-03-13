@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { FONTS, COLORS } from "../../styles/styles";
-import { Button } from "../common/Buttons-component";
+import { FONTS, COLORS } from "../common/styles";
+import { Button } from "../common/components/Buttons";
 const FooterStyles = styled.div`
   &.footer {
     grid-column: 1 / -1;

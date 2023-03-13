@@ -1,11 +1,11 @@
 import "./App.css";
 import styled from "styled-components";
 
-import { FONTS } from "./styles/styles";
-
-import { Header } from "./project/home/Header-component";
-import { Body } from "./project/home/Body-component";
-import { Footer } from "./project/home/Footer-component";
+import { FONTS } from "./project/common/styles";
+import { Header } from "./project/pages/Header";
+import { TaskList } from "./project/tasks/TaskList";
+import { Footer } from "./project/pages/Footer";
+import { Body } from "./project/pages/Body";
 
 const AppWrapper = styled.div`
   &.grid__col-8 {
@@ -23,7 +23,9 @@ export const App = () => {
   return (
     <AppWrapper className="grid__col-8">
       <Header />
-      <Body />
+      <Body>
+        <TaskList />
+      </Body>
       <Footer />
     </AppWrapper>
   );

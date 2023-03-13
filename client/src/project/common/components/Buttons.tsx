@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useState, useEffect } from "react";
-import { SIZES, COLORS, PROPS } from "../../styles/styles";
+import { SIZES, COLORS, PROPS } from "../styles";
 
 let theme = "light";
 

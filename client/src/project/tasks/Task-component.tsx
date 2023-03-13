@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import { Button } from "../common/Buttons-component";
-import { TaskInput } from "../common/Input-component";
-import { COLORS, FONTS, SIZES, PROPS } from "../../styles/styles";
+import { Button } from "../common/components/Buttons";
+import { TaskInput } from "../common/components/Input";
+import { COLORS, FONTS, SIZES, PROPS } from "../common/styles";
 
 let theme = "light";
 interface TaskListHeaderProps {

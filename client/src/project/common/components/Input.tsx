@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-import { COLORS, FONTS, SIZES, PROPS } from "../../styles/styles";
-import { tasksArray } from "../tasks/Task-static";
+import { COLORS, FONTS, SIZES, PROPS } from "../styles";
+
 const theme = "light";
 
 const InputStyled = styled.input`
