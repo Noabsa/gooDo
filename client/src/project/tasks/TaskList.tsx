@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TaskListItem, TaskListHeader, TaskListAdderItem } from "./TaskItems";
 import { TaskSearchBar } from "./TaskSearchBar";
 import { useAppDispatch, useAppSelector } from "../common/state/store";
@@ -26,8 +26,18 @@ export const TaskList = () => {
   const taskListArray = useAppSelector((state) => state.taskList);
   let [searchValue, setSearchValue] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("taskList", JSON.stringify([...taskListArray]));
+  }, [taskListArray]);
+
   const addTask = (taskDescription: string) => {
-    dispatch(taskListActions.addTask(taskDescription));
+    let newTask: Task = {
+      id: new Date().getTime(),
+      description: taskDescription,
+      marked: "",
+      priority: "",
+    };
+    dispatch(taskListActions.addTask(newTask));
   };
 
   return (

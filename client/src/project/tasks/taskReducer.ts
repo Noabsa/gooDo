@@ -3,21 +3,15 @@ import { Task, tasksArray } from "./taskUtils";
 
 export type TaskListState = Task[];
 
-const initialState: TaskListState = tasksArray;
-
+//const initialState: TaskListState = tasksArray;
+let initialState = JSON.parse(localStorage.getItem("taskList") || "[]");
 export const taskListReducer = (
   state = initialState,
   action
 ): TaskListState => {
   switch (action.type) {
     case TaskListConstants.ADD_TASK:
-      const newTask: Task = {
-        id: new Date().getTime(),
-        description: action.taskDescription,
-        marked: "",
-        priority: "",
-      };
-      return [newTask, ...state];
+      return [action.newTask, ...state];
 
     case TaskListConstants.MARK_TASK:
       return state.map((task) => {
@@ -31,9 +25,10 @@ export const taskListReducer = (
         return task;
       });
     case TaskListConstants.DELETE_TASK:
-      return state.filter((task) => {
+      let newArray = state.filter((task) => {
         return task.id !== action.taskIndex;
       });
+      return newArray;
     default:
       return state;
   }

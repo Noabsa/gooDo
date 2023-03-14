@@ -6,9 +6,9 @@ export enum TaskListConstants {
   DELETE_TASK = "DELETE_TASK",
 }
 
-const addTask = (taskDescription: string) => ({
+const addTask = (newTask: Task) => ({
   type: TaskListConstants.ADD_TASK,
-  taskDescription,
+  newTask,
 });
 const markTask = (taskIndex: number, property: keyof Task) => ({
   type: TaskListConstants.MARK_TASK,
