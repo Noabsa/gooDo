@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SearchInput } from "../common/components/Input";
+import { useAppSelector } from "../common/state/store";
 import { COLORS, SIZES, PROPS, FONTS } from "../common/styles";
 let theme = "light";
 
@@ -73,10 +74,10 @@ const StyledInfoSearchBar = styled.div`
         z-index: 1;
         transition: none;
         grid-row: 2/-1;
-        width: fit-content;
+        width: 115px;
         grid-column-start: 1;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         padding: 13px 0 0 0;
         margin: 0 0 0 65px;
@@ -98,6 +99,7 @@ const StyledInfoSearchBar = styled.div`
   @media (min-width: 1024px) {
     .info-search-bar {
       &--tasks-info-bar {
+        width: 225px;
         & label {
           display: inline-block;
         }
@@ -111,13 +113,20 @@ const StyledInfoSearchBar = styled.div`
   }
 `;
 export const TaskSearchBar = ({ setSearchValue }) => {
+  const taskListArray = useAppSelector((state) => state.taskList);
+  let totalTasks: number = taskListArray.length;
+  let doneTasks: number = taskListArray.filter(
+    (task) => task.marked === "active"
+  ).length;
+  let percent = Math.round(((doneTasks * 100) / totalTasks) * 10) / 10;
   return (
     <StyledInfoSearchBar className="info-search-bar">
       <div className="info-search-bar--tasks-info-bar">
         <div>
-          <span>1350</span> <label>&nbsp; tasks completed</label>
+          <span>{taskListArray.length}</span>{" "}
+          <label>&nbsp; tasks / completed</label>
         </div>
-        <span>· 100%</span>
+        <span> {isNaN(percent) ? "0" : percent} %</span>
       </div>
       <div className="info-search-bar--search-bar">
         <div className="info-search-bar--search-bar__custom-button"></div>

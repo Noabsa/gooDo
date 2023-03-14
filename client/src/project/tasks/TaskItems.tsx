@@ -8,10 +8,7 @@ import { taskListActions } from "./taskAccions";
 import { Task } from "./taskUtils";
 
 let theme = "light";
-interface TaskListHeaderProps {
-  counter?: number;
-}
-const TaskListHeaderStyled = styled.div<TaskListHeaderProps>`
+const TaskListHeaderStyled = styled.div`
   &.taskList-header {
     display: flex;
     align-items: center;
@@ -41,7 +38,8 @@ const TaskListHeaderStyled = styled.div<TaskListHeaderProps>`
         fill-opacity: 0;
         stroke-width: 5px;
         stroke: ${COLORS[theme].hueR};
-        stroke-dasharray: calc((110 - (110 * ${"0"} / 100)));
+
+        // stroke-dasharray: calc((110 - (110 * ${"0"} / 100)));
         stroke-linecap: round;
       }
     }
@@ -53,12 +51,20 @@ const TaskListHeaderStyled = styled.div<TaskListHeaderProps>`
     }
   }
 `;
-export const TaskListHeader = ({ counter }: TaskListHeaderProps) => {
+export const TaskListHeader = () => {
+  const taskListArray = useAppSelector((state) => state.taskList);
+  let totalTasks: number = taskListArray.length;
+  let doneTasks: number = taskListArray.filter(
+    (task) => task.marked === "active"
+  ).length;
+  let performance = doneTasks / totalTasks;
+  let full = 2 * 3.14 * 18 * performance;
+  let empty = 2 * 3.14 * 18 - full;
   return (
     <TaskListHeaderStyled className="taskList-header">
       <div className="counter">
-        <span>{counter}</span>
-        <svg viewBox="0 0 0 -40">
+        <span>{taskListArray.length}</span>
+        <svg viewBox="0 0 0 -40" strokeDasharray={`${full} ${empty}`}>
           <circle cx="22" cy="22" r="18"></circle>
         </svg>
       </div>
@@ -116,7 +122,6 @@ export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const handleToggleState = (property: keyof Task) => {
     dispatch(taskListActions.markTask(task.index, property));
-    console.log(task);
   };
 
   return (

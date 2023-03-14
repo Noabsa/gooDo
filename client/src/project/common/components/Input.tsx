@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 import { COLORS, FONTS, SIZES, PROPS } from "../styles";
 
@@ -45,7 +45,7 @@ export const TaskInput = ({ addTask }: TaskInputProps) => {
   };
   const handleSumit = (event) => {
     event.preventDefault();
-    addTask(taskDescription);
+    taskDescription.length > 0 && addTask(taskDescription);
     setTaskDescription("");
   };
 

@@ -32,7 +32,7 @@ export const TaskList = () => {
   return (
     <TaskListWrapper>
       <TaskSearchBar setSearchValue={setSearchValue} />
-      <TaskListHeader counter={taskListArray.length} />
+      <TaskListHeader />
       <TaskListAdderItem addTask={addTask} />
       {generateTaskList(taskListArray, searchValue)}
     </TaskListWrapper>
