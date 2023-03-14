@@ -1,8 +1,10 @@
-type State = "active" | "inactive";
+export type State = "active" | "";
+
 export interface Task {
   index: number;
   description: string;
-  state: State;
+  marked: State;
   priority: State;
 }
+
 export const tasksArray: Task[] = [];

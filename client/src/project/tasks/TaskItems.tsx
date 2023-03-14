@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 import { Button } from "../common/components/Buttons";
 import { TaskInput } from "../common/components/Input";
+import { useAppDispatch, useAppSelector } from "../common/state/store";
 import { COLORS, FONTS, SIZES, PROPS } from "../common/styles";
+import { taskListActions } from "./taskAccions";
+import { Task } from "./taskUtils";
 
 let theme = "light";
 interface TaskListHeaderProps {
@@ -63,7 +66,10 @@ export const TaskListHeader = ({ counter }: TaskListHeaderProps) => {
     </TaskListHeaderStyled>
   );
 };
-
+interface TaskListItemProps {
+  task: Task;
+  key: number;
+}
 const TaskItemStyled = styled.div`
   &.taskList-item {
     font-family: ${FONTS.user};
@@ -106,7 +112,13 @@ const TaskItemStyled = styled.div`
     }
   }
 `;
-export const TaskListItem = ({ task }): JSX.Element => {
+export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const handleToggleState = (property: keyof Task) => {
+    dispatch(taskListActions.markTask(task.index, property));
+    console.log(task);
+  };
+
   return (
     <TaskItemStyled className="taskList-item">
       <Button
@@ -114,7 +126,8 @@ export const TaskListItem = ({ task }): JSX.Element => {
         icon="checkedButton"
         iStyle="duo"
         size="m"
-        state={task.state}
+        state={task.marked}
+        onClick={() => handleToggleState("marked")}
       />
       <section>
         {/* ----------  PREPARED BUT NOT SHOWN ---------- */}
@@ -150,6 +163,7 @@ export const TaskListItem = ({ task }): JSX.Element => {
           iStyle="duo"
           size="s"
           state={task.priority}
+          onClick={() => handleToggleState("priority")}
         ></Button>
         {/*<Button type="icon" icon="trash" iStyle="duo" size="s"></Button>*/}
       </section>

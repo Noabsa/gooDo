@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { useState, useEffect } from "react";
 import { SIZES, COLORS, PROPS } from "../styles";
 
 let theme = "light";
@@ -170,6 +169,8 @@ interface ButtonProps {
   type: string;
   transform?: string;
   state?: string;
+  index?: number;
+  onClick?: () => void;
 }
 const ButtonStyled = styled.div<ButtonStyledProps>`
   &.button {
@@ -310,31 +311,15 @@ const Button = ({
   type,
   transform,
   state,
+  onClick,
 }: ButtonProps) => {
-  const [status, setStatus] = useState("");
-  useEffect(() => {
-    if (state) {
-      state === "inactive" ? setStatus("") : setStatus("--active");
-    } else {
-      setStatus("");
-    }
-  }, [state]);
-  const handleStatus = () => {
-    console.log(status);
-    status === "" ? setStatus("--active") : setStatus("");
-  };
-
   return (
-    <ButtonStyled
-      className={`button`}
-      size={size}
-      onClick={() => handleStatus()}
-    >
+    <ButtonStyled onClick={onClick} className={`button`} size={size}>
       <Icon
         icon={icon}
         iStyle={iStyle}
-        tag={`button__${type}${status} ${
-          (status && transform) || "no-transform"
+        tag={`button__${type}${(state && "--" + state) || ""} ${
+          (state && transform) || "no-transform"
         }`}
       />
     </ButtonStyled>
