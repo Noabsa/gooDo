@@ -16,14 +16,14 @@ const AppWrapper = styled.div`
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 280px auto 80px;
+    grid-template-rows: 150px auto 80px;
   }
 `;
 export const App = () => {
   return (
     <AppWrapper className="grid__col-8">
       <Header />
-      <Body>
+      <Body className="body">
         <TaskList />
       </Body>
       <Footer />

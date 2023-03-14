@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import { COLORS, FONTS, SIZES, PROPS } from "../styles";
 
@@ -13,6 +13,7 @@ const InputStyled = styled.input`
   border-left: 1px solid ${COLORS[theme].hueR};
   padding: 0 0 0 15px;
   font-family: ${FONTS.user};
+  z-index: 12;
   :hover {
     background: linear-gradient(90deg, white 95%, transparent 95%);
     filter: drop-shadow(-1px 1.5px 1px ${COLORS.black}20);
@@ -23,14 +24,10 @@ const InputStyled = styled.input`
     filter: drop-shadow(-1px 1px 1px ${COLORS.black}30);
   }
 `;
-export const Input = () => {
-  return <InputStyled></InputStyled>;
-};
-
 interface TaskInputProps {
   addTask?: any;
 }
-const TaskInputStyled = styled(InputStyled)<TaskInputProps>`
+const AddTaskInput = styled(InputStyled)<TaskInputProps>`
   border-left: none;
   color: ${COLORS.black}85;
   font-weight: 600;
@@ -39,6 +36,7 @@ const TaskInputStyled = styled(InputStyled)<TaskInputProps>`
     color: ${COLORS.black}50;
   }
 `;
+
 export const TaskInput = ({ addTask }: TaskInputProps) => {
   let [taskDescription, setTaskDescription] = useState("");
 
@@ -52,12 +50,23 @@ export const TaskInput = ({ addTask }: TaskInputProps) => {
   };
 
   return (
-    <form style={{ height: "100%" }} onSubmit={handleSumit}>
-      <TaskInputStyled
+    <form onSubmit={handleSumit}>
+      <AddTaskInput
         placeholder="Enter your task here"
         onChange={getTaskDescription}
         value={taskDescription}
       />
+    </form>
+  );
+};
+export const SearchInput = ({ setSearchValue }) => {
+  let getSearchValue = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  return (
+    <form>
+      <InputStyled onChange={getSearchValue}></InputStyled>
     </form>
   );
 };

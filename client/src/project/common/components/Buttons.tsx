@@ -320,6 +320,7 @@ const Button = ({
     }
   }, [state]);
   const handleStatus = () => {
+    console.log(status);
     status === "" ? setStatus("--active") : setStatus("");
   };
 
