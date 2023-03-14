@@ -1,7 +1,7 @@
 export type State = "active" | "";
 
 export interface Task {
-  index: number;
+  id: number;
   description: string;
   marked: State;
   priority: State;

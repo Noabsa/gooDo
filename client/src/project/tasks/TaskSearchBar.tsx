@@ -74,7 +74,7 @@ const StyledInfoSearchBar = styled.div`
         z-index: 1;
         transition: none;
         grid-row: 2/-1;
-        width: 115px;
+        width: 100px;
         grid-column-start: 1;
         display: flex;
         justify-content: center;
@@ -123,10 +123,10 @@ export const TaskSearchBar = ({ setSearchValue }) => {
     <StyledInfoSearchBar className="info-search-bar">
       <div className="info-search-bar--tasks-info-bar">
         <div>
-          <span>{taskListArray.length}</span>{" "}
-          <label>&nbsp; tasks / completed</label>
+          <span>{taskListArray.length} ·</span>{" "}
+          <label>tasks &nbsp;||&nbsp; completed</label>
         </div>
-        <span> {isNaN(percent) ? "0" : percent} %</span>
+        <span>· {isNaN(percent) ? "0" : percent} %</span>
       </div>
       <div className="info-search-bar--search-bar">
         <div className="info-search-bar--search-bar__custom-button"></div>

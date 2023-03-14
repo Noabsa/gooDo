@@ -176,6 +176,7 @@ const ButtonStyled = styled.div<ButtonStyledProps>`
   &.button {
     aspect-ratio: 1;
     height: ${({ size }) => SIZES[size] * 20}px;
+
     &:hover {
       cursor: pointer;
     }

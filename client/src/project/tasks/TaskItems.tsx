@@ -38,8 +38,6 @@ const TaskListHeaderStyled = styled.div`
         fill-opacity: 0;
         stroke-width: 5px;
         stroke: ${COLORS[theme].hueR};
-
-        // stroke-dasharray: calc((110 - (110 * ${"0"} / 100)));
         stroke-linecap: round;
       }
     }
@@ -87,7 +85,7 @@ const TaskItemStyled = styled.div`
     border-bottom: 1px solid ${COLORS.black}20;
     padding: 0 0 0 15px;
     & .button {
-      margin: 0 3px 0 3px;
+      margin: 0 8px 0 3px;
     }
     & section {
       display: flex;
@@ -121,9 +119,9 @@ const TaskItemStyled = styled.div`
 export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const handleToggleState = (property: keyof Task) => {
-    dispatch(taskListActions.markTask(task.index, property));
+    dispatch(taskListActions.markTask(task.id, property));
   };
-
+  const deleteTask = () => dispatch(taskListActions.deleteTask(task.id));
   return (
     <TaskItemStyled className="taskList-item">
       <Button
@@ -170,7 +168,13 @@ export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
           state={task.priority}
           onClick={() => handleToggleState("priority")}
         ></Button>
-        {/*<Button type="icon" icon="trash" iStyle="duo" size="s"></Button>*/}
+        <Button
+          type="icon"
+          icon="trash"
+          iStyle="duo"
+          size="s"
+          onClick={deleteTask}
+        ></Button>
       </section>
     </TaskItemStyled>
   );

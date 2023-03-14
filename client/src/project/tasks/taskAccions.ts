@@ -3,6 +3,7 @@ import { State, Task } from "./taskUtils";
 export enum TaskListConstants {
   ADD_TASK = "ADD_TASK",
   MARK_TASK = "MARK_TASK",
+  DELETE_TASK = "DELETE_TASK",
 }
 
 const addTask = (taskDescription: string) => ({
@@ -14,9 +15,14 @@ const markTask = (taskIndex: number, property: keyof Task) => ({
   taskIndex,
   property,
 });
+const deleteTask = (taskIndex: number) => ({
+  type: TaskListConstants.DELETE_TASK,
+  taskIndex,
+});
 
 export const taskListActions = {
   TaskConstants: TaskListConstants,
   addTask,
   markTask,
+  deleteTask,
 };

@@ -12,7 +12,7 @@ export const taskListReducer = (
   switch (action.type) {
     case TaskListConstants.ADD_TASK:
       const newTask: Task = {
-        index: state.length + 1,
+        id: new Date().getTime(),
         description: action.taskDescription,
         marked: "",
         priority: "",
@@ -21,7 +21,7 @@ export const taskListReducer = (
 
     case TaskListConstants.MARK_TASK:
       return state.map((task) => {
-        if (task.index === action.taskIndex) {
+        if (task.id === action.taskIndex) {
           return {
             ...task,
             [action.property]:
@@ -29,6 +29,10 @@ export const taskListReducer = (
           };
         }
         return task;
+      });
+    case TaskListConstants.DELETE_TASK:
+      return state.filter((task) => {
+        return task.id !== action.taskIndex;
       });
     default:
       return state;

@@ -5,6 +5,7 @@ import { TaskSearchBar } from "./TaskSearchBar";
 import { useAppDispatch, useAppSelector } from "../common/state/store";
 import { taskListActions } from "./taskAccions";
 import { Task } from "./taskUtils";
+import { uniqueKey } from "../common/utils";
 
 const TaskListWrapper = styled.div`
   grid-column: 2/-2;
@@ -17,7 +18,7 @@ const generateTaskList = (tasksArray: Task[], searchValue: string) => {
       .includes(searchValue.toLocaleLowerCase());
   });
   return filteredTaskArray.map((task: Task) => {
-    return <TaskListItem task={task} key={task.index}></TaskListItem>;
+    return <TaskListItem task={task} key={uniqueKey()}></TaskListItem>;
   });
 };
 export const TaskList = () => {
