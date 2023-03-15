@@ -13,10 +13,10 @@ const AppWrapper = styled.div`
     font-weight: 400;
     min-width: 320px;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 150px auto 80px;
+    grid-template-rows: 150px auto 120px;
   }
 `;
 export const App = () => {

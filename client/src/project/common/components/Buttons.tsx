@@ -140,6 +140,34 @@ const Icon = ({ icon, iStyle, tag }: IconProps) => {
       />
     </svg>
   );
+  const PersonalFileDuo = () => (
+    <svg viewBox="0 0 512 512" className={tag}>
+      <path
+        className="prim-color"
+        d="M 256 0 v 128 h 128 L 256 0 Z M 192 320 c 35.35 0 64 -28.66 64 -64 s -28.65 -64 -64 -64 C 156.7 192 128 220.7 128 256 S 156.7 320 192 320 Z M 224 352 H 160 c -44.18 0 -80 35.81 -80 80 C 80 440.8 87.16 448 96 448 h 192 c 8.836 0 16 -7.164 16 -16 C 304 387.8 268.2 352 224 352 Z"
+      />
+      <path
+        className="sec-color"
+        d="M 256 128 V 0 H 48 C 21.49 0 0 21.49 0 48 v 416 C 0 490.5 21.49 512 48 512 h 288 c 26.51 0 48 -21.49 48 -48 V 128 H 256 Z M 192 192 c 35.35 0 64 28.66 64 64 s -28.65 64 -64 64 c -35.34 0 -64 -28.66 -64 -64 S 156.7 192 192 192 Z M 288 448 H 96 c -8.836 0 -16 -7.164 -16 -16 C 80 387.8 115.8 352 160 352 h 64 c 44.18 0 80 35.81 80 80 C 304 440.8 296.8 448 288 448 Z"
+      />
+    </svg>
+  );
+  const PersonalFileSolid = () => (
+    <svg viewBox="-50 0 512 512" className={tag}>
+      <path
+        className="prim-color"
+        d="M 64 0 C 28.7 0 0 28.7 0 64 V 448 c 0 35.3 28.7 64 64 64 H 320 c 35.3 0 64 -28.7 64 -64 V 160 H 256 c -17.7 0 -32 -14.3 -32 -32 V 0 H 64 Z M 256 0 V 128 H 384 L 256 0 Z M 128 256 a 64 64 0 1 1 128 0 a 64 64 0 1 1 -128 0 Z M 80 432 c 0 -44.2 35.8 -80 80 -80 h 64 c 44.2 0 80 35.8 80 80 c 0 8.8 -7.2 16 -16 16 H 96 c -8.8 0 -16 -7.2 -16 -16 Z"
+      />
+    </svg>
+  );
+  const Envelope = () => (
+    <svg viewBox="0 0 512 512" className={tag}>
+      <path
+        className="prim-color"
+        d="M 64 112 c -8.8 0 -16 7.2 -16 16 v 22.1 L 220.5 291.7 c 20.7 17 50.4 17 71.1 0 L 464 150.1 V 128 c 0 -8.8 -7.2 -16 -16 -16 H 64 Z M 48 212.2 V 384 c 0 8.8 7.2 16 16 16 H 448 c 8.8 0 16 -7.2 16 -16 V 212.2 L 322 328.8 c -38.4 31.5 -93.7 31.5 -132 0 L 48 212.2 Z M 0 128 C 0 92.7 28.7 64 64 64 H 448 c 35.3 0 64 28.7 64 64 V 384 c 0 35.3 -28.7 64 -64 64 H 64 c -35.3 0 -64 -28.7 -64 -64 V 128 Z"
+      />
+    </svg>
+  );
   const icons: Icons = {
     checkedButton: {
       solid: CheckedButtonSolid,
@@ -155,6 +183,8 @@ const Icon = ({ icon, iStyle, tag }: IconProps) => {
     fork: { duo: Fork },
     octocat: { solid: Octocat },
     linkedin: { solid: LinkedIn },
+    personalFile: { duo: PersonalFileDuo, solid: PersonalFileSolid },
+    envelope: { solid: Envelope },
   };
   return icons[icon][iStyle]?.() as JSX.Element;
 };

@@ -6,12 +6,15 @@ const FooterStyles = styled.div`
     grid-column: 1 / -1;
     display: flex;
     flex-wrap: wrap;
-    & section {
+    & .section {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       color: ${COLORS.black}90;
+      &.buttons {
+        align-items: flex-end;
+      }
       span {
         font-family: ${FONTS.brand};
         font-weight: 800;
@@ -25,13 +28,44 @@ const FooterStyles = styled.div`
 export const Footer = () => {
   return (
     <FooterStyles className="footer">
-      <section>
-        <Button type="social" icon="share" iStyle="duo" size="xl" />
-        <Button type="social" icon="fork" iStyle="duo" size="xl" />
-        <Button type="social" icon="octocat" iStyle="solid" size="xl" />
-        <Button type="social" icon="linkedin" iStyle="solid" size="xl" />
+      <section className="section buttons">
+        <Button
+          type="social"
+          icon="envelope"
+          iStyle="solid"
+          size="x_l"
+          onClick={() =>
+            (window.location.href = "mailto:noelia.abalo@gmail.com")
+          }
+        />
+        <Button
+          type="social"
+          icon="personalFile"
+          iStyle="solid"
+          size="x_l"
+          onClick={() =>
+            (window.location.href = "https://noabsa.github.io/Porfolio/")
+          }
+        />
+        <Button
+          type="social"
+          icon="octocat"
+          iStyle="solid"
+          size="x_l"
+          onClick={() => (window.location.href = "https://github.com/Noabsa")}
+        />
+        <Button
+          type="social"
+          icon="linkedin"
+          iStyle="solid"
+          size="x_l"
+          onClick={() =>
+            (window.location.href =
+              "https://www.linkedin.com/in/noelia-abalo-sanchez/")
+          }
+        />
       </section>
-      <section>
+      <section className="section moto">
         <span>gooDo&nbsp;</span>by<span>&nbsp;Nabsa</span>
       </section>
     </FooterStyles>

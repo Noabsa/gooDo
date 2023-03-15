@@ -19,7 +19,7 @@ const COLORS = {
   dark: THEMES.dark,
 };
 const FONTS = { brand: "Albert Sans", app: "Source Sans Pro", user: "Inter" };
-const SIZES = { xs: 0.6, s: 0.75, m: 1, l: 1.25, xl: 1.5, xxl: 2 };
+const SIZES = { xs: 0.6, s: 0.75, m: 1, l: 1.25, xl: 1.5, x_l: 1.75, xxl: 2 };
 const PROPS = { borderRadius: 3, buttonStandard: 20, fontStandard: 16 };
 
 export { THEMES, COLORS, FONTS, SIZES, PROPS };
