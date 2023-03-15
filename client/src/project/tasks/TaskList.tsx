@@ -13,7 +13,7 @@ const TaskListWrapper = styled.div`
 
 const generateTaskList = (tasksArray: Task[], searchValue: string) => {
   let filteredTaskArray = tasksArray.filter((task: Task) => {
-    return task.description
+    return task?.description
       .toLocaleLowerCase()
       .includes(searchValue.toLocaleLowerCase());
   });

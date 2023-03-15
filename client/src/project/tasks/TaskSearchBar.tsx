@@ -53,7 +53,7 @@ const StyledInfoSearchBar = styled.div`
       }
       &__input {
         width: 100%;
-        margin: 10px 20px 10px 25px;
+        margin: 10px 12px 10px 25px;
       }
     }
   }

@@ -1,5 +1,5 @@
 import { TaskListConstants } from "./taskAccions";
-import { Task, tasksArray } from "./taskUtils";
+import { Task } from "./taskUtils";
 
 export type TaskListState = Task[];
 
@@ -12,7 +12,6 @@ export const taskListReducer = (
   switch (action.type) {
     case TaskListConstants.ADD_TASK:
       return [action.newTask, ...state];
-
     case TaskListConstants.MARK_TASK:
       return state.map((task) => {
         if (task.id === action.taskIndex) {
@@ -25,10 +24,20 @@ export const taskListReducer = (
         return task;
       });
     case TaskListConstants.DELETE_TASK:
-      let newArray = state.filter((task) => {
+      let newArray = state.filter((task: Task) => {
         return task.id !== action.taskIndex;
       });
       return newArray;
+    case TaskListConstants.EDIT_TASK:
+      return state.map((task: Task) => {
+        if (task.id === action.taskIndex) {
+          return {
+            ...task,
+            description: action.newDescription,
+          };
+        }
+        return task;
+      });
     default:
       return state;
   }

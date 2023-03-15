@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { Button } from "../common/components/Buttons";
-import { TaskInput } from "../common/components/Input";
+import { TaskInput, EditInput } from "../common/components/Input";
 import { useAppDispatch, useAppSelector } from "../common/state/store";
 import { COLORS, FONTS, SIZES, PROPS } from "../common/styles";
 import { taskListActions } from "./taskAccions";
@@ -118,10 +118,15 @@ const TaskItemStyled = styled.div`
 `;
 export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
   const dispatch = useAppDispatch();
+
   const handleToggleState = (property: keyof Task) => {
     dispatch(taskListActions.markTask(task.id, property));
   };
   const deleteTask = () => dispatch(taskListActions.deleteTask(task.id));
+
+  const editTask = (newDescription: string) =>
+    dispatch(taskListActions.editTask(task.id, newDescription));
+
   return (
     <TaskItemStyled className="taskList-item">
       <Button
@@ -133,31 +138,7 @@ export const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
         onClick={() => handleToggleState("marked")}
       />
       <section>
-        {/* ----------  PREPARED BUT NOT SHOWN ---------- */}
-        <>
-          <div style={{ display: "none" }}>
-            <span className="counter">
-              34
-              <Button
-                type="static"
-                icon="subtask"
-                iStyle="solid"
-                size="xs"
-                state={""}
-              ></Button>
-            </span>
-            <Button
-              type="icon"
-              icon="caret"
-              iStyle="solid"
-              size="s"
-              transform="rotate"
-              state={""}
-            ></Button>
-          </div>
-        </>
-        {/* ----------  ---------------------- ---------- */}
-        <p>{`${task.description}`}</p>
+        <EditInput task={task} editTask={editTask} deleteTask={deleteTask} />
       </section>
       <section>
         <Button
